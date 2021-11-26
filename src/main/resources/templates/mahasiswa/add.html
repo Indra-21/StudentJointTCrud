@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/> 
+    <link rel="shortcut icon" href="#" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Add Form</title>
+    <style>
+        body{
+            font-family:sans-serif;
+            margin:10%;
+        }
+    </style>
+</head>
+<body>
+    <form action="/student/mahasiswa/insert" id="form-add-mahasiswa" method="post">
+            <div class="form-group">
+                <label class="col-form-label">Kode Mahasiswa</label> 
+                <input type="text" class="form-control" name="kodeMahasiswa" id="kodeMId" placeholder="Kode Mahasiswa">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Nama Mahasiswa</label>
+                <input type="text" class="form-control" name="namaMahasiswa" id="namaMId" placeholder="Nama Mahasiswa">
+            </div>
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jk" id="inlineRadio1" value="Laki-laki">
+                        <label for="inlineRadio1" class="form-check-label">Laki-laki</label>
+                        &nbsp;
+                    <input class="form-check-input" type="radio" name="jk" id="inlineRadio2" value="Wanita">
+                        <label for="inlineRadio2" class="form-check-label">Wanita</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="jurusan1">Jurusan</label>
+                <select class="form-control" name="nmJurusan" id="jurusanId" >
+                    <optgroup label="Pilih Jurusan">
+                        <option selected disabled value=""></option>
+                        <!-- <option value="Sistem Informasi">Sistem Informasi</option>
+                        <option value="Teknik Informatika">Teknik Informatika</option> -->
+                        <option th:each="jurusanModel:${lemparJurusan}" th:text="${jurusanModel.kdJurusan}" th:value="${jurusanModel.nmJurusan}"></option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="alamat-option">Alamat</label>
+                <textarea name="alamat" class="form-control" id="alamatId" cols="3" placeholder="Masukan Alamat"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Status</label>
+                    <select class="form-control" name="status" id="exampleFormControlSelect1">
+                        <option selected disabled value="pilih">-pilih-</option>
+                        <option value="Aktif">Aktif</option>
+                        <option value="No-Aktif">No-Aktif</option>
+                    </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+    </form>
+</body>
+</html>

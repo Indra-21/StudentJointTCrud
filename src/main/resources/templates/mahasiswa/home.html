@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/> 
+    <link rel="shortcut icon" href="#" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 10%;
+        }
+    </style>
+</head>
+<body>
+    <h2>Bismillah Programmer</h2>
+    <div>
+        <div>
+            <button id="btn-add" type="button">Add Data</button>
+        </div>
+        <br/>
+            <table border="1" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Kode</td>
+                        <td>Mahasiswa</td>
+                        <td>Gender</td>
+                        <td>Alamat</td>
+                        <td>Status</td>
+                        <td>Action</td>    
+                    </tr>
+                </thead>
+                <tbody id="list-mahasiswa">
+
+                </tbody>
+            </table>
+            <!-- modal -->
+            <div class="modal fade" id="modal-add-mahasiswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="AddMahasiswa">Add Mahasiswa</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Modal body text goes here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</body>
+<script type="text/javascript">
+
+    refreshData();
+    $('#btn-add').click(function () {
+        var kd_mhs = $(this).val();
+        $.ajax({
+            url : '/student/mahasiswa/add',
+            type : 'get',
+            dataType : 'html',
+            data : { kd_mhs },
+            success: function (result){
+                $('#modal-add-mahasiswa').modal('show');
+                $('#modal-add-mahasiswa').find('.modal-body').html(result);
+            }
+        });
+    });
+
+    $('#modal-add-mahasiswa').on('submit', '#form-add-mahasiswa', function (){
+        $.ajax({
+            url : '/student/mahasiswa/add',
+            type : 'post',
+            dataType : 'html',
+            data : $(this).serialize(),
+            success : function(result){
+                alert("data berhasil disimpan");
+                $('#modal-add-mahasiswa').modal('hide');
+            }
+        });
+    });
+
+    function refreshData() {
+        $.ajax({
+            url : '/student/mahasiswa/list',
+            type : 'get',
+            dataType : 'html',
+            success: function (result) {
+                $('#list-mahasiswa').html(result);
+            }
+        });
+    }
+    $('#list-mahasiswa').on('click', '#btn-edit', function(){
+        var kdMhsEdit = $(this).val();
+        $.ajax({
+            url : '/student/mahasiswa/edit',
+            type : 'get',
+            dataType : 'html',
+            data : { kdMhsEdit },
+            success: function(result){
+                $('#modal-add-mahasiswa').modal('show');
+                $('#modal-add-mahasiswa').find('.modal-body').html(result);
+            }
+        });
+    });
+
+    $('#modal-add-mahasiswa').on('submit', '#form-edit-mahasiswa', function (){
+        $.ajax({
+            url : '/student/mahasiswa/add',
+            type :'post',
+            dataType : 'html',
+            data : $(this).serialize(),
+            success: function (result){
+                alert("data berhasil di update");
+                $('#modal-add-mahasiswa').modal('hide');
+                refreshData();
+            }
+        });
+    });
+
+    $('#list-mahasiswa').on('click', '#btn-hapus', function (){
+        var kdMhsHapus = $(this).val()
+        $.ajax({
+            url : '/student/mahasiswa/remove',
+            type : 'get',
+            dataType : 'html',
+            data : {kdMhsHapus},
+            success: function(result){
+                $('#modal-add-mahasiswa').modal('show');
+                $('#modal-add-mahasiswa').find('.modal-body').html(result);
+            }
+        });
+    });
+
+    $('#modal-add-mahasiswa').on('submit', '#form-mahasiswa-delete', function (){
+        $.ajax({
+            url : '/student/mahasiswa/add',
+            type : 'post',
+            dataType : 'html',
+            data : $(this).serialize(),
+            success: function (result){
+                alert("data berhasil di hapus");
+                $('#modal-add-mahasiswa').modal('hide');
+                refreshData();
+            }
+        });
+    });
+    
+</script>
+</html>

@@ -42,7 +42,7 @@
                         <option selected disabled value=""></option>
                         <!-- <option value="Sistem Informasi">Sistem Informasi</option>
                         <option value="Teknik Informatika">Teknik Informatika</option> -->
-                        <option th:each="jurusanModel:${lemparJurusan}" th:text="${jurusanModel.kdJurusan}" th:value="${jurusanModel.nmJurusan}"></option>
+                        <option th:each="jurusanModel:${lemparJurusan}" th:value="${jurusanModel.kdJurusan}" th:text="${jurusanModel.nmJurusan}"></option>
                     </optgroup>
                 </select>
             </div>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <form action="login/action" method="POST">
+        <h1>Login User</h1>
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="username" id="nameid"/></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" name="password" id="Passid"/></td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td><input type="text" name="alamat" id="alamatid"></td>
+            </tr>
+            <tr>
+                <td>Jenis kelamin</td>
+                <td>
+                    <input type="radio" name="jk" id="jkid" value="laki">Laki-laki
+                    
+                    <input type="radio" name="jk" id="jkid" value="wanita">Wanita
+                </td>
+            </tr>
+            <tr>
+                <td>Warganegara</td>
+                <td>
+                    <select name="wr" id="wrid">
+                        <option selected disabled value="-PILIH-">-PILIH-</option>
+                        <option value="indo">Indonesia</option>
+                        <option value="mls">Malaisya</option>
+                        <option value="jepang">Jepang</option>
+                        <option value="amerika">Amerika</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Pendidikan</td>
+                <td><input type="text" name="pendidikan" id="pendidikanid"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" value="submit">Save</button>&nbsp;&nbsp;<input type="reset"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

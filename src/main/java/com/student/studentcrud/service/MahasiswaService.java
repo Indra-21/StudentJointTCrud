@@ -15,6 +15,7 @@ public class MahasiswaService {
     
     @Autowired
     MahasiswaRepository mahasiswaRepository;
+    
 
     // @Transactional(readOnly = true)
     // untuk melakukan insert ke db
@@ -26,9 +27,9 @@ public class MahasiswaService {
         return this.mahasiswaRepository.findAll();
     }
     // fungsi yang sama dengan save 
-    public void updateData(MahasiswaModel mahasiswaUpdate){
-        mahasiswaRepository.save(mahasiswaUpdate);
-    }
+    // public void updateData(MahasiswaModel mahasiswaUpdate){
+    //     mahasiswaRepository.save(mahasiswaUpdate);
+    // }
     // untuk mengambil primarykey yang add di table mahasiswamodel 
     // jika dari fe req melakukan update suatu data dengan mengirimkan value yang mau di update
     // ke be dari be akan melakukan update dengan mencari primari key yang di minta fe
@@ -38,6 +39,13 @@ public class MahasiswaService {
     public MahasiswaModel keyMhsTabel(String kd_mhs){
         return this.mahasiswaRepository.carikodemhs(kd_mhs);
     }
+
+    // public MahasiswaModel cariJurusanMhs(String kd_mhs, String kdJurusan){
+    //     return this.mahasiswaRepository.carijurusan(kd_mhs, kdJurusan);
+    // }
+    // public MahasiswaModel test(String kdJurusan){
+    //     return this.mahasiswaRepository.cariTest(kdJurusan);
+    // }
 
     // untuk melakukan perintah hapus data yang ada di mahasiswamodel
     public void hapus(MahasiswaModel mahasiswaHapus){

@@ -24,5 +24,8 @@ public class JurusanService {
         this.jurusanRepository.save(jurusanModel);
     }
 
+    // public JurusanModel test(String kdJurusan){
+    //     return this.jurusanRepository.cariTest(kdJurusan);
+    // }
     
 }

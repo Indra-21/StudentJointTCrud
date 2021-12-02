@@ -10,5 +10,9 @@ public interface MahasiswaRepository extends JpaRepository<MahasiswaModel, Strin
     @Query("select p from MahasiswaModel p where kd_mhs = ?1")
     MahasiswaModel carikodemhs(String kd_mhs);
 
+    // @Query("select t from MahasiswaModel t where kdJurusan = ?1")
+    // MahasiswaModel cariTest(String kdJurusan);
+    // @Query("select j from MahasiswaModel j where kd_mhs =?1 and kdJurusan =?2")
+    // MahasiswaModel carijurusan(String kd_mhs, String kdJurusan);
     
 }

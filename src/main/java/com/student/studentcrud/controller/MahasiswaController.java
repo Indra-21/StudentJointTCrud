@@ -35,8 +35,24 @@ public class MahasiswaController {
         this.bacaJurusan(model);
         return "/mahasiswa/add";
     }
+    @RequestMapping("mahasiswa/detail")
+    public String detail(Model model){
+        this.lihat(model);
+        return "/mahasiswa/detail";
+    }
 
     // Jurusan model
+    // public void bacadetail(Model model) {
+    //     List<MahasiswaModel> tampiList = new ArrayList<>();
+    //     tampiList = this.mahasiswaService.bacaDataMahasiswaTabel();
+
+    //     model.addAttribute("tampilDetail", tampiList);
+    // }
+    // public void name(Model model) {
+    //     List<JurusanModel> namTest = new ArrayList<>();
+    //     namTest = this.jurusanService.rJurusanModels()
+    // }
+
     public void bacaJurusan(Model model) {
         List<JurusanModel> jurusanModels = new ArrayList<>();
         jurusanModels = this.jurusanService.rJurusanModels();
@@ -80,37 +96,39 @@ public class MahasiswaController {
     @RequestMapping("/mahasiswa/edit")
     public String edit(HttpServletRequest request, Model model){
         String kodeMahasiswa = request.getParameter("kdMhsEdit"); //request ngambil parameter yang di buat di ajax yg mana akan mencari primary key mana yang akan di edit 
-
+        
         MahasiswaModel mahasiswaModel = new MahasiswaModel(); //intance mahasiswamodel untuk memanipulasi data mahasiswamodel
-        mahasiswaModel = this.mahasiswaService.keyMhsTabel(kodeMahasiswa); //variable mahasiswa model di isi dengan fungsi mahasiswa servis yaitu yg sudah di custom di repo guna mencari primary key di mahasiswamodel
-
+        mahasiswaModel = this.mahasiswaService.keyMhsTabel(kodeMahasiswa); //variable mahasiswa model di isi dengan fungsi mahasiswa servis yaitu yg sudah di custom di repo guna mencari primary key di mahasiswamode
+    
         model.addAttribute("editMhs", mahasiswaModel);//model untuk membungkus/mmbundle var mahasiswamodel dalam adddatribut dengan nama variable baru untuk di kirim ke FE
-
+        // this.bacaJurusan(model);
         return "/mahasiswa/edit";
     }
+    
     //route untuk action tombol inputan/insert to database 
     //sama dengan line 32 sampai 49
     @RequestMapping("/mahasiswa/update")
     public String updateEdit(HttpServletRequest request){
-        String kdMahasiswaEdit = request.getParameter("kodeMahasiswa");
-        String nmMahasiswaEdit = request.getParameter("namaMahasiswa");
-        String jkEdit = request.getParameter("jk");
-        String alamatEdit = request.getParameter("alamat");
-        String statusEdit = request.getParameter("status");
-        String kdJurusan = request.getParameter("nmJurusan");
+        // String kdMahasiswaEdit = request.getParameter("kodeMahasiswa");
+        // String nmMahasiswaEdit = request.getParameter("namaMahasiswa");
+        // String jkEdit = request.getParameter("jk");
+        // String alamatEdit = request.getParameter("alamat");
+        // String statusEdit = request.getParameter("status");
+        // String kdJurusan = request.getParameter("nmJurusan");
 
-        MahasiswaModel mahasiswaModel = new MahasiswaModel();
+        // MahasiswaModel mahasiswaModel = new MahasiswaModel();
 
-        mahasiswaModel.setKd_mhs(kdMahasiswaEdit);
-        mahasiswaModel.setNm_mhs(nmMahasiswaEdit);
-        mahasiswaModel.setJk(jkEdit);
-        mahasiswaModel.setAlamat(alamatEdit);
-        mahasiswaModel.setStatus(statusEdit);
-        mahasiswaModel.setKdJurusan(kdJurusan);
+        // mahasiswaModel.setKd_mhs(kdMahasiswaEdit);
+        // mahasiswaModel.setNm_mhs(nmMahasiswaEdit);
+        // mahasiswaModel.setJk(jkEdit);
+        // mahasiswaModel.setAlamat(alamatEdit);
+        // mahasiswaModel.setStatus(statusEdit);
+        // mahasiswaModel.setKdJurusan(kdJurusan);
 
-        this.mahasiswaService.updateData(mahasiswaModel);
+        // this.mahasiswaService.updateData(mahasiswaModel);
+        this.insert(request);
 
-        return "/mahasiswa/home";
+        return "redirect:/mahasiswa";
     }
     // Route untuk ke romove.html penjelasan nya sama dengan line 62 - 71
     @RequestMapping("/mahasiswa/remove")
